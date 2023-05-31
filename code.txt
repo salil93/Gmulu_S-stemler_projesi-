@@ -1,0 +1,197 @@
+//toplama
+module adder(	output reg [12:0] result,
+					input [5:0] operand1,
+					input [5:0] operand2);
+
+	always @* begin
+		result = operand1 + operand2;
+	end
+endmodule
+
+//cikart
+module subtractor(	output reg [12:0] result,
+							input [5:0] operand1,
+							input [5:0] operand2);
+		
+	always @* begin
+		result = operand1 - operand2;
+	end
+endmodule
+
+//carpmak
+ module multiplier(	output reg [12:0] result,
+							input [5:0] operand1,
+							input [5:0] operand2);
+		
+	always @* begin
+		result = operand1 * operand2;
+	end
+endmodule
+
+
+//bolum
+module divider(	output reg [12:0] result,
+						input [5:0] operand1,
+						input [5:0] operand2);
+		
+	always @* begin
+		result = operand1 / operand2;
+	end
+endmodule
+
+//multiplexer4-1
+
+module multiplexer_4_to_1(output reg [12:0] z,
+									input [12:0] a0,
+									input [12:0] a1,
+									input [12:0] a2,
+									input [12:0] a3,
+									input [1:0] sel);
+		
+	always @*
+		case (sel)
+			2'b00: z = a0; // add
+			2'b01: z = a1; // sub
+			2'b10: z = a2; // mul
+			2'b11: z = a3; // div
+		endcase 
+endmodule 
+
+//separator
+
+module separator(	output reg [3:0] bcd1,
+						output reg [3:0] bcd2,
+						output reg [3:0] bcd3,
+						output reg [3:0] bcd4,
+						input [12:0] result);
+
+	reg [12:0] temp;
+	always @* begin
+		temp = result;
+		
+		bcd1 = temp % 10;
+		
+		temp = temp / 10;
+		bcd2 = temp % 10;
+		
+		temp = temp / 10;
+		bcd3 = temp % 10;
+		
+		temp = temp / 10;
+		bcd4 = temp;
+	end
+endmodule 
+
+//seven segment
+
+module seven_segment_decoder(output [6:0] seg,
+										input [3:0] bcd);
+	reg [6:0] seg_temp;
+	
+	always @*
+		case (bcd)
+			4'b0000: seg_temp = 7'b1000000; // 0
+			4'b0001: seg_temp = 7'b1111001; // 1
+			4'b0010: seg_temp = 7'b0100100; // 2
+			4'b0011: seg_temp = 7'b0110000; // 3
+			4'b0100: seg_temp = 7'b0011001; // 4
+			4'b0101: seg_temp = 7'b0010010; // 5
+			4'b0110: seg_temp = 7'b0000010; // 6
+			4'b0111: seg_temp = 7'b1111000; // 7
+			4'b1000: seg_temp = 7'b0000000; // 8
+			4'b1001: seg_temp = 7'b0010000; // 9
+			default: seg_temp = 7'b0111111; // "-" for invalid
+		endcase 
+	
+	assign seg = seg_temp;
+	
+endmodule 
+
+//2
+
+module seven_segment_decoder(output [6:0] seg,
+										input [3:0] bcd);
+	reg [6:0] seg_temp;
+	
+	always @*
+		case (bcd)
+			4'b0000: seg_temp = 7'b1000000; // 0
+			4'b0001: seg_temp = 7'b1111001; // 1
+			4'b0010: seg_temp = 7'b0100100; // 2
+			4'b0011: seg_temp = 7'b0110000; // 3
+			4'b0100: seg_temp = 7'b0011001; // 4
+			4'b0101: seg_temp = 7'b0010010; // 5
+			4'b0110: seg_temp = 7'b0000010; // 6
+			4'b0111: seg_temp = 7'b1111000; // 7
+			4'b1000: seg_temp = 7'b0000000; // 8
+			4'b1001: seg_temp = 7'b0010000; // 9
+			default: seg_temp = 7'b0111111; // "-" for invalid
+		endcase 
+	
+	assign seg = seg_temp;
+	
+endmodule 
+
+//3
+
+module seven_segment_decoder(output [6:0] seg,
+										input [3:0] bcd);
+	reg [6:0] seg_temp;
+	
+	always @*
+		case (bcd)
+			4'b0000: seg_temp = 7'b1000000; // 0
+			4'b0001: seg_temp = 7'b1111001; // 1
+			4'b0010: seg_temp = 7'b0100100; // 2
+			4'b0011: seg_temp = 7'b0110000; // 3
+			4'b0100: seg_temp = 7'b0011001; // 4
+			4'b0101: seg_temp = 7'b0010010; // 5
+			4'b0110: seg_temp = 7'b0000010; // 6
+			4'b0111: seg_temp = 7'b1111000; // 7
+			4'b1000: seg_temp = 7'b0000000; // 8
+			4'b1001: seg_temp = 7'b0010000; // 9
+			default: seg_temp = 7'b0111111; // "-" for invalid
+		endcase 
+	
+	assign seg = seg_temp;
+	
+endmodule 
+
+
+//4
+module seven_segment_decoder(output [6:0] seg,
+										input [3:0] bcd);
+	reg [6:0] seg_temp;
+	
+	always @*
+		case (bcd)
+			4'b0000: seg_temp = 7'b1000000; // 0
+			4'b0001: seg_temp = 7'b1111001; // 1
+			4'b0010: seg_temp = 7'b0100100; // 2
+			4'b0011: seg_temp = 7'b0110000; // 3
+			4'b0100: seg_temp = 7'b0011001; // 4
+			4'b0101: seg_temp = 7'b0010010; // 5
+			4'b0110: seg_temp = 7'b0000010; // 6
+			4'b0111: seg_temp = 7'b1111000; // 7
+			4'b1000: seg_temp = 7'b0000000; // 8
+			4'b1001: seg_temp = 7'b0010000; // 9
+			default: seg_temp = 7'b0111111; // "-" for invalid
+		endcase 
+	
+	assign seg = seg_temp;
+	
+endmodule 
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
